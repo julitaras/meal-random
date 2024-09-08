@@ -1,16 +1,14 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import MealRandomPage from './components/MealRandomPage';
 import RecipeDetailsPage from './components/MealRandomPage';
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={MealRandomPage} />
-        <Route path="/recipe-details" component={RecipeDetailsPage} />
-      </Switch>
-    </BrowserRouter>
+    <Routes>
+      <Route exact path="/" element={<MealRandomPage />} />
+      <Route path="/recipe-details/:id" element={<RecipeDetailsPage />} />
+    </Routes>
   );
 }
 

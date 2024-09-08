@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const MealRandomPage = () => {
   const [randomMeal, setRandomMeal] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate(); // Para redirigir
 
   const getRandomMeal = async () => {
     try {
@@ -48,7 +49,7 @@ const MealRandomPage = () => {
 
   const handleLearnMore = () => {
     if (randomMeal && randomMeal.idMeal) {
-      history.push(`/recipe-details/${randomMeal.idMeal}`);
+      navigate(`/recipe-details/${randomMeal.idMeal}`); // Redirigir usando navigate
     }
   };
 
@@ -84,4 +85,4 @@ const MealRandomPage = () => {
   );
 }
 
-export default withRouter(MealRandomPage);
+export default MealRandomPage;

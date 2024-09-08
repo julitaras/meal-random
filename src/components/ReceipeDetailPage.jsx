@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const RecipeDetailsPage = ({ match }) => {
+  const { id } = useParams(); // Obtén el ID de los parámetros
   const [mealDetails, setMealDetails] = useState(null);
   const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchMealDetails = async () => {
-      const mealId = match.params.id;
       try {
-        const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`);
+        const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
         if (response.data.meals && response.data.meals.length > 0) {
           setMealDetails(response.data.meals[0]);
           setError('');
@@ -25,7 +25,7 @@ const RecipeDetailsPage = ({ match }) => {
     };
 
     fetchMealDetails();
-  }, [match.params.id]);
+  }, [id]);
 
   return (
     <div className="container">
