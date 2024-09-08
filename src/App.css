@@ -1,0 +1,39 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+.App {
+  text-align: center;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  font-family: "Proxima Nova", sans-serif;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.search-container {
+  margin-bottom: 20px;
+}
+
+.meal-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.meal-details {
+  display: flex;
+}
+
+.meal-image {
+  width: 50%;
+  margin-right: 20px;
+}
+
+.meal-details p {
+  flex-grow: 1;
+}
