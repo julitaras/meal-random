@@ -49,7 +49,8 @@ const MealRandomPage = () => {
 
   const handleLearnMore = () => {
     if (randomMeal && randomMeal.idMeal) {
-      navigate(`/recipe-details/${randomMeal.idMeal}`); // Redirigir usando navigate
+      console.log('navega a:', `/recipes/details/${randomMeal.idMeal}`);
+      navigate(`/recipes/details/${randomMeal.idMeal}`); // Redirigir usando navigate
     }
   };
 

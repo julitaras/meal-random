@@ -45,4 +45,4 @@ const RecipeDetailsPage = ({ match }) => {
   );
 }
 
-export default withRouter(RecipeDetailsPage);
+export default RecipeDetailsPage;
