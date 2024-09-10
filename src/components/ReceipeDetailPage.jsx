@@ -3,8 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
-const RecipeDetailsPage = ({ match }) => {
-  const { id } = useParams(); // Obtén el ID de los parámetros
+const RecipeDetailsPage = () => {
+  const { id } = useParams();
   const [mealDetails, setMealDetails] = useState(null);
   const [error, setError] = useState('');
 
@@ -16,11 +16,11 @@ const RecipeDetailsPage = ({ match }) => {
           setMealDetails(response.data.meals[0]);
           setError('');
         } else {
-          setError('No se encontraron detalles de la receta');
+          setError('No recipe details were found.');
         }
       } catch (error) {
         console.error('Error fetching meal details:', error);
-        setError('Ocurrió un error al obtener los detalles de la receta.');
+        setError('An error occurred while fetching the recipe details.');
       }
     };
 
@@ -29,7 +29,7 @@ const RecipeDetailsPage = ({ match }) => {
 
   return (
     <div className="container">
-      <h1>Detalles de la Receta</h1>
+      <h1>Recipe details</h1>
       {error && <p className="error-message">{error}</p>}
       {mealDetails && (
         <div>
@@ -40,7 +40,7 @@ const RecipeDetailsPage = ({ match }) => {
           </div>
         </div>
       )}
-      <Link to="/" className="btn btn-primary">Volver a cualquier receta</Link>
+      <Link to="/" className="btn btn-dark">Return to any recipe</Link>
     </div>
   );
 }

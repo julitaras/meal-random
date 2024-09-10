@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const MealRandomPage = () => {
@@ -20,11 +20,11 @@ const MealRandomPage = () => {
         setError('');
       } else {
         setRandomMeal(null);
-        setError('No se encontró lo que buscabas.');
+        setError('No recipe were found.');
       }
     } catch (error) {
       console.error('Error fetching meal data:', error);
-      setError('Ocurrió un error al buscar la receta.');
+      setError('An error occurred while searching for the recipe.');
     }
   };
 
@@ -37,11 +37,9 @@ const MealRandomPage = () => {
   };
 
   const handleNextMeal = () => {
-    // Obtener una nueva receta aleatoria si no hay término de búsqueda
     if (!searchTerm) {
       getRandomMeal();
     } else {
-      // Si hay un término de búsqueda, simplemente limpiamos el término de búsqueda
       setSearchTerm('');
     }
   };
@@ -54,13 +52,13 @@ const MealRandomPage = () => {
 
   return (
     <div className="container">
-      <h1>No sabes qué comer?</h1>
+      <h1>Don't know what to eat?</h1>
       <div className="search-container">
         <input
           type="text"
           value={searchTerm}
           onChange={handleSearchChange}
-          placeholder="Buscar recetas..."
+          placeholder="Seach recipes..."
           className="form-control"
         />
       </div>
@@ -70,13 +68,15 @@ const MealRandomPage = () => {
           <h2>{randomMeal.strMeal}</h2>
           <div className="meal-details">
             <img src={randomMeal.strMealThumb} alt={randomMeal.strMeal} className="meal-image" />
-            <p>{randomMeal.strInstructions}</p>
+            <p className="meal-details__text">{randomMeal.strInstructions}</p>
           </div>
-          <button onClick={handleLearnMore} className="btn btn-primary">Saber más sobre esta receta</button>
         </div>
       )}
       {!error && (
-        <button onClick={handleNextMeal} className="btn btn-primary">Siguiente Receta</button>
+        <>
+          <button onClick={handleLearnMore} className="btn btn-dark">Learn more about this recipe</button>
+          <button onClick={handleNextMeal} className="btn btn-dark">Next recipe</button>
+        </>
       )}
     </div>
   );

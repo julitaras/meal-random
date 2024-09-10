@@ -5,7 +5,7 @@
 }
 
 .container {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -23,17 +23,30 @@ h1 {
 .meal-info {
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.btn {
+  margin: 10px 5px;  /* Espacio alrededor de cada botón */
 }
 
 .meal-details {
   display: flex;
 }
 
+.meal-details__text {
+  margin-left: 20px;
+}
+
 .meal-image {
-  width: 50%;
-  margin-right: 20px;
+  width: 100%;          /* Que la imagen ocupe todo el ancho de su contenedor */
+  height: auto;         /* Ajusta la altura automáticamente para mantener la proporción */
+  object-fit: cover;     /* Asegura que la imagen se recorte si es necesario para llenar el área */
+  border-radius: 8px;    /* Opcional: bordes redondeados para darle un mejor estilo */
+  max-width: 500px;      /* Limitar el tamaño máximo de la imagen, opcional */
 }
 
 .meal-details p {
   flex-grow: 1;
+  text-align: center;
 }
