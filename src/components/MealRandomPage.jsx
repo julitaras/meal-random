@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const MealRandomPage = () => {
   const [randomMeal, setRandomMeal] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [error, setError] = useState('');
-  // const navigate = useNavigate(); // Para redirigir
+  const navigate = useNavigate();
 
   const getRandomMeal = async () => {
     try {
       let url = 'https://www.themealdb.com/api/json/v1/1/random.php';
-      // Si hay un término de búsqueda, agregamos el parámetro de búsqueda a la URL
       if (searchTerm) {
         url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`;
       }
@@ -49,8 +48,7 @@ const MealRandomPage = () => {
 
   const handleLearnMore = () => {
     if (randomMeal && randomMeal.idMeal) {
-      console.log('navega a:', `/recipes/details/${randomMeal.idMeal}`);
-      // navigate(`${randomMeal.idMeal}`, { replace: true }); // Redirigir usando navigate
+      navigate(`${randomMeal.idMeal}`, { replace: true });
     }
   };
 
@@ -74,9 +72,7 @@ const MealRandomPage = () => {
             <img src={randomMeal.strMealThumb} alt={randomMeal.strMeal} className="meal-image" />
             <p>{randomMeal.strInstructions}</p>
           </div>
-          <Link to={`/${randomMeal.idMeal}`}>
-            Saber más sobre esta receta
-          </Link>
+          <button onClick={handleLearnMore} className="btn btn-primary">Saber más sobre esta receta</button>
         </div>
       )}
       {!error && (
