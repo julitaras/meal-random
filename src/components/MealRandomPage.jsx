@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const MealRandomPage = () => {
   const [randomMeal, setRandomMeal] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate(); // Para redirigir
+  // const navigate = useNavigate(); // Para redirigir
 
   const getRandomMeal = async () => {
     try {
@@ -50,7 +50,7 @@ const MealRandomPage = () => {
   const handleLearnMore = () => {
     if (randomMeal && randomMeal.idMeal) {
       console.log('navega a:', `/recipes/details/${randomMeal.idMeal}`);
-      navigate(`/recipes/details/${randomMeal.idMeal}`); // Redirigir usando navigate
+      // navigate(`${randomMeal.idMeal}`, { replace: true }); // Redirigir usando navigate
     }
   };
 
@@ -74,9 +74,9 @@ const MealRandomPage = () => {
             <img src={randomMeal.strMealThumb} alt={randomMeal.strMeal} className="meal-image" />
             <p>{randomMeal.strInstructions}</p>
           </div>
-          <button onClick={handleLearnMore} className="btn btn-secondary">
+          <Link to={`/${randomMeal.idMeal}`}>
             Saber más sobre esta receta
-          </button>
+          </Link>
         </div>
       )}
       {!error && (
